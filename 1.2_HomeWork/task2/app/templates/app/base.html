@@ -1,0 +1,25 @@
+{% load static %}
+{% load app_tags %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>{% block title %}Заголовок{% endblock%}</title>
+	<!--Import Google Icon Font-->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!--Import materialize.css-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-rc.2/css/materialize.min.css">
+    <!--Let browser know website is optimized for mobile-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+</head>
+    <body>
+
+        <!--вынес меню в кастомный тег для тренировки-->
+        {% nav_button_tag request.path %}
+
+        {% block content %}
+
+        {% endblock%}
+
+    </body>
+</html>
