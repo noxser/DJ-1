@@ -2,15 +2,17 @@ from django.urls import register_converter, path
 from datetime import datetime
 from app.views import file_content, FileList
 
+
 # Определите и зарегистрируйте конвертер для определения даты в урлах и наоборот урла по датам
 class DateConverter:
     regex = '[0-9]{4}\-[0-9]{1,2}\-[0-9]{1,2}'
+
     # перехватываем строку из адреса и преобразовываем ее в дату
     def to_python(self, value):
-        return datetime.strptime(value,"%Y-%m-%d").date()
+        return datetime.strptime(value, "%Y-%m-%d").date()
 
     def to_url(self, value):
-    	return value.date()
+        return value.date()
 
 
 register_converter(DateConverter, 'dddd')
