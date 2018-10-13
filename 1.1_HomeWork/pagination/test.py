@@ -32,3 +32,12 @@ pprint.pprint(stations)
 # from datetime import datetime, date, time
 
 # print(datetime.now())
+
+
+
+# Варианты формирвания линка в url
+
+# 'next_page_url': (f'%s?page={cur_page.next_page_number()}' % reverse(bus_stations)) if cur_page.has_next() else False,
+# 'next_page_url': (reverse(bus_stations) + '?' + f'page={cur_page.next_page_number()}') if cur_page.has_next() else False,
+# 'next_page_url': (reverse(bus_stations) + '?' + urllib.parse.urlencode({'page':cur_page.next_page_number()}))
+# 		 if cur_page.has_next() else False,
