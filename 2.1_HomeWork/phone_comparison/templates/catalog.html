@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Каталог{% endblock %}
+{% block content %}
+<div class="container">
+    <div class="header">
+        <h1>Сравнение телефонов</h1>
+    </div>
+    <table class="table table-striped table-hover">
+    {% for key, val in names_spec.items %}
+        <tr>
+            <td>{{val}}</td>
+            {% for key1, val1 in phones.items %}
+                {%if key == key1 %}
+                    {% if key == 'phone_model' %}
+                        {% for info in val1 %}
+                            <th>{{info}}</th>
+                        {% endfor %}
+                    {% else %}
+                        {% for info in val1 %}
+                            <td>{{info}}</td>
+                        {% endfor %}
+                    {% endif %}
+                {% endif%}
+            {% endfor %}
+        </tr>
+    {% endfor %}
+    </table>
+</div>
+{% endblock %}

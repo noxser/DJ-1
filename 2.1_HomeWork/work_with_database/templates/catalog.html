@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+{% load static %}
+{% load custom_tag_and_filters %}
+
+{% block title %}Каталог{% endblock %}
+{% block content %}
+    <style>
+        .sort-block a {
+        margin-left: 20px
+        }
+
+        .content div {
+        width: 49%;
+        display: inline-block;
+        vertical-align: top;
+        padding-bottom: 15px
+        }
+    </style>
+
+    <div class="container">
+        <div class="header">
+            <h1><a href="/catalog">Каталог</a></h1>
+        </div>
+        <div class="sort-block"  >
+            {# Здесь должен быть раздел с сортировкой #}
+            <p>Сортировать по:
+                <a href="/catalog?sort=name">названию</a>
+                <a href="/catalog?sort=min_price">начиная с дешевых</a>
+                <a href="/catalog?sort=max_price">начиная с дорогих</a>
+            </p>
+        </div>
+        <div class="content">
+            {# Здесь должен отображаться каталог с телефонами #}
+            {%for phone in phones%}
+            <div>
+                <h2><a href="/catalog/{{phone.slug}}">{{phone.name}}</a></h2>
+                <h5> {% get_verbose_field_name phone 'price' %} {{phone.price}}р.</h5>
+                <img src={{phone.image}} alt="альтернативный текст" height="500px">
+            </div>
+            {% endfor%}
+        </div>
+    </div>
+{% endblock %}

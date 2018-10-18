@@ -1,0 +1,55 @@
+{% extends "base.html" %}
+{% load static %}
+{% load custom_tag_and_filters %}
+
+{% block title %}Телефон{% endblock %}
+{% block content %}
+    <style>
+        table {
+        margin-bottom: 30px
+        }
+
+        .spec_coll {
+        vertical-align: top;
+        padding-left: 40px
+        }
+
+        ul {
+        margin-left: 0;
+        padding-left: 0;
+        list-style-type: none;
+        font-weight: bold
+        }
+    </style>
+
+    <div class="container">
+        <div class="header">
+            <h1>Телефон</h1>
+        </div>
+        <div class="content">
+            <table>
+                <tr>
+                    <td>
+                        <img src={{phone.image}} alt="альтернативный текст">
+                    </td>
+                    <td class="spec_coll">
+                        <h2>{{phone.name}}</h2>
+                        <br>
+                            <ul>
+                                <li>
+                                    {% get_verbose_field_name phone 'price' %} {{phone.price}}р.
+                                </li>
+                                <li>
+                                    {% get_verbose_field_name phone 'release_date' %} {{phone.release_date|convert_data}}
+                                </li>
+                                <li>
+                                    {% get_verbose_field_name phone 'lte_exists' %} {{phone.lte_exists|convert_bool}}
+                                </li>
+                            </ul>
+                        <a href="/catalog">Вернуться в каталог</a>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+{% endblock %}
