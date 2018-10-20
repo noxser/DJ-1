@@ -24,15 +24,15 @@ class BookListView(generic.ListView):
 
             list_books = Book.objects.order_by('pub_date')
             cur_book = Book.objects.filter(name=get_object_or_404(Book, pub_date=self.kwargs['date']).name)
-            page = (list(list_books).index(cur_book[0]) + 1)
+            page = (list(list_books).index(cur_book[0]))
             count_books = list_books.count()
             context['is_paginated'] = True
-            if 1 < page < count_books:
-                context['next_page'] = str(list(list_books)[page].pub_date)
-                context['previous_page'] = str(list(list_books)[page - 2].pub_date)
-            elif 1 == page:
-                context['next_page'] = str(list(list_books)[page].pub_date)
-            elif count_books == page:
-                context['previous_page'] = str(list(list_books)[page - 2].pub_date)
+            if 0 < page < count_books-1:
+                context['next_page'] = str(list(list_books)[page + 1].pub_date)
+                context['previous_page'] = str(list(list_books)[page - 1].pub_date)
+            elif 0 == page:
+                context['next_page'] = str(list(list_books)[page + 1].pub_date)
+            elif count_books-1 == page:
+                context['previous_page'] = str(list(list_books)[page - 1].pub_date)
             return context
         return context
