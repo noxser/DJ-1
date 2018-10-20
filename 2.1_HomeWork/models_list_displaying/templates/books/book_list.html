@@ -22,13 +22,13 @@
     {% if is_paginated %}
     <div class="pagination">
         <span class="page-links">
-          {% if page_obj.has_previous %}
+          {% if previous_page %}
               <a href={{previous_page}}><< {{previous_page}}</a>
           {%else%}
             <span><< Ничего нет</span>
           {% endif %}
-            <span></span>
-          {% if page_obj.has_next %}
+            <span>|</span>
+          {% if next_page %}
             <a href={{next_page}}>{{next_page}} >></a>
             {%else%}
             <span>Ничего нет >></span>

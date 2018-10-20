@@ -15,7 +15,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, register_converter
-from books.views import BookListView, BookListViewSort
+from books.views import BookListView
 from books.converters import PubDateConverter
 
 
@@ -23,6 +23,6 @@ register_converter(PubDateConverter, 'year_book_pub')
 
 urlpatterns = [
     path('books/', BookListView.as_view(), name='BookListView'),
-    path('books/<year_book_pub:date>', BookListViewSort.as_view(), name='BookListViewSort'),
+    path('books/<year_book_pub:date>', BookListView.as_view(), name='BookListView'),
     path('admin/', admin.site.urls),
 ]
