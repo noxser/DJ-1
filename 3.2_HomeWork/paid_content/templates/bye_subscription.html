@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Оплата подписки{% endblock %}
+
+{% block content %}
+<ul>
+    <li><a href="/articles/">Список статей</a></li>
+</ul>
+    <div class="container">
+        <div class="header">
+            {%if user.username %}
+                <h1>Оплата подписки</h1>
+
+                <form action="#" method="post">
+                    {% csrf_token %}
+                    {%if user.profile.has_subscription %}
+                        <p>Поздравляем! У Вас есть полный доступ к материалам.</p>
+                        <p><input type="submit" class="btn" value="Отписаться" name="un_sub"></p>
+                    {%else%}
+                        <p>У Вас нет доступа к платным материалам.</p>
+                        <p><input type="submit" class="btn" value="Подписаться" name="sub"></p>
+                    {%endif%}
+                </form>
+
+            {%else%}
+                <h1>Для оплаты подписки авторизуйтесь</h1>
+            {%endif%}
+        </div>
+    </div>
+{% endblock %}
+

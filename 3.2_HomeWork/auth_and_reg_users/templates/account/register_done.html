@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Добро пожаловать{% endblock %}
+
+{% block content %}
+    <div class="container">
+        <div class="header"></div>
+        {% if new_user.first_name %}
+            <h2>Добро пожаловать, {{ new_user.first_name }}!</h2>
+        {% else %}
+            <h2>Добро пожаловать, {{ new_user.username }}!</h2>
+        {% endif %}
+        <p>Вы успешно зарегистрировались, <a href="{% url "login_in" %}">войти</a>.</p>
+    </div>
+{% endblock %}
+
+

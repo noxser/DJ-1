@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Авторизация{% endblock %}
+
+{% block content %}
+    <div class="container">
+        <div class="header"></div>
+        <h2>Авторизация</h2>
+        <p>{{error}}</p>
+        <form action="." method="post">
+            {% for field in form %}
+                {{ field.label_tag }}<br>
+                {{ field }}
+                {{ field.errors }}<br>
+            {% endfor %}
+            {% csrf_token %}
+            <p><input type="submit" value="Войти"></p>
+        </form>
+        <a href="/">Вернуться на главную</a>
+    </div>
+{% endblock %}
