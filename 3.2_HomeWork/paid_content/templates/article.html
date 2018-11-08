@@ -11,6 +11,8 @@
     <div class="container">
         <div class="header">
             <h3>{{context.title}}</h3>
+            <!--<img src="{% get_media_prefix %}{{context.image}}" alt="Лого">-->
+            <img src="{{context.image.url}}" alt="Лого">
             <p>{{context.text}}</p>
         </div>
     </div>

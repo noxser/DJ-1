@@ -16,6 +16,8 @@ Including another URLconf
 from django.conf.urls import url
 from django.contrib import admin
 from django.urls import path
+from django.conf import settings
+from django.conf.urls.static import static
 
 
 from articles import views
@@ -25,4 +27,6 @@ urlpatterns = [
     path('articles/', views.show_articles),
     path('sub/', views.by_subscription),
     url(r'^articles/(?P<id>[0-9]+)/', views.show_article),
-]
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+
+# разрешаем раздачу медиа ресурсов DEV серверу
