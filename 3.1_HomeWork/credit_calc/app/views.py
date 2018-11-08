@@ -15,9 +15,7 @@ class CalcView(TemplateView):
             months_count = int(self.request.GET['months_count'])
 
             common_result = round((cost + cost * rate) / months_count)
-            result = round(common_result / 12, 2)
-            print(result)
-            print(common_result)
+            result = round(common_result / months_count, 2)
 
             return render(request, self.template_name,
                           {'form': form, 'common_result': common_result, 'result': result})
@@ -34,7 +32,7 @@ class CalcViewHandMaid(TemplateView):
             rate = int(self.request.GET['rate'])
             months_count = int(self.request.GET['months_count'])
             common_result = round((cost + cost * rate) / months_count)
-            result = round(common_result / 12, 2)
+            result = round(common_result / months_count, 2)
             form_data = {'common_result': common_result,
                          'result': result,
                          'cost': cost,
