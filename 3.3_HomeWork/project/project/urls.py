@@ -15,11 +15,12 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from app.views import route_views
+from app.views import route_views, RouteViews
 from django.http import HttpResponseRedirect
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('stations/', route_views, name='route_views'),
+    path('stations2/', RouteViews.as_view(), name='RouteViews'),
     path('', lambda x: HttpResponseRedirect('stations/')),
 ]
