@@ -11,11 +11,14 @@
 <body>
     <div class="left-margin width300">
         <form action="" method="GET">
-            <p><label for="id_initial_fee">Стоимость товара:</label></p>
-            <input type="number" name="initial_fee" min="1" required="" id="id_initial_fee" value="{{form_data.cost}}">
+            <p><label for="id_cost">Стоимость товара:</label></p>
+            {{form_data.cost_err}}
+            <input type="number" name="cost" min="1" required="" id="id_cost" value="{{form_data.cost}}">
             <p><label for="id_rate">Процентная ставка:</label></p>
+            {{form_data.rate_err}}
             <input type="number" name="rate" min="1" required="" id="id_rate" value="{{form_data.rate}}">
             <p><label for="id_months_count">Срок кредита в месяцах:</label></p>
+            {{form_data.months_count_err}}
             <input type="number" name="months_count" min="1" required="" id="id_months_count" value="{{form_data.months_count}}">
             <br>
             <input type="submit" value="Подсчитать">

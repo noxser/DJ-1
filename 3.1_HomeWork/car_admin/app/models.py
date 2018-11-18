@@ -1,5 +1,6 @@
 import re
 from django.db import models
+from django.template.defaultfilters import truncatewords_html
 
 
 class Car(models.Model):
@@ -9,20 +10,17 @@ class Car(models.Model):
     def __str__(self):
         return f'{self.brand} {self.model}'
 
-    def review_count(self):
-        return Review.objects.filter(car=self).count()
-
     class Meta:
         verbose_name = 'Автомобиль'
         verbose_name_plural = 'Автомобили'
 
     def display_reviews(self):
         """
-        Считаем обзоры для авто с помощью обратной связи
+        Считаем обзоры для авто
         """
-        return self.review_count()
+        return Review.objects.filter(car=self).count()
 
-    display_reviews.short_description = 'Колличество обзоров'
+    display_reviews.short_description = 'Количество обзоров'
 
 
 class Review(models.Model):
@@ -34,7 +32,8 @@ class Review(models.Model):
         return str(self.car) + ' ' + self.text_without_html()[:50]
 
     def text_without_html(self):
-        return re.sub('<.*?>', '', self.text)
+        # return re.sub('<.*?>', '', self.text)
+        return truncatewords_html(self.text, 0)
 
     class Meta:
         verbose_name = 'Обзор'
